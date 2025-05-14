@@ -12,7 +12,8 @@ namespace FreelancerHub.Models
         public string Email { get; set; }
 
         public string PhoneNo { get; set; }
-        public string Skillsets { get; set; }
-        public string Hobbies { get; set; }
+        public ICollection<Skillset> Skillsets { get; set; }
+        public ICollection<Hobby> Hobbies { get; set; }
+        public bool IsArchive { get; set; }
     }
 }
