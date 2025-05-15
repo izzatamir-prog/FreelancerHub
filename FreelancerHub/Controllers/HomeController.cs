@@ -23,6 +23,10 @@ namespace FreelancerHub.Controllers
             return View();
         }
 
+        public IActionResult Proceed()
+        {
+            return View("MainPage");
+        }
         public IActionResult Privacy()
         {
             return View();
