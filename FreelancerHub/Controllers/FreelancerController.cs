@@ -82,6 +82,24 @@ namespace FreelancerHub.Controllers
             return NoContent();
         }
 
+        // GET: api/freelancer/search?query=ali
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Freelancer>>> SearchFreelancers([FromQuery] string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return BadRequest("Search query cannot be empty.");
+
+            var results = await _context.Freelancers
+                .Include(f => f.Skillsets)
+                .Include(f => f.Hobbies)
+                .Where(f => !f.IsArchive &&
+                       (f.Username.Contains(query) || f.Email.Contains(query)))
+                .ToListAsync();
+
+            return Ok(results);
+        }
+
+
         [HttpPatch("archive/{id}")]
         public async Task<IActionResult> ArchiveFreelancer(int id)
         {
@@ -97,8 +115,8 @@ namespace FreelancerHub.Controllers
 
         [HttpPatch("unarchive/{id}")]
         public async Task<IActionResult> UnarchiveFreelancer(int id)
-        {
-            var freelancer = await _context.Freelancers.FindAsync(id);
+            {
+                var freelancer = await _context.Freelancers.FindAsync(id);
             if (freelancer == null)
                 return NotFound();
 
