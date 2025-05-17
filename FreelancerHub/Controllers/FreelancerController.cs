@@ -26,7 +26,7 @@ namespace FreelancerHub.Controllers
             return await _context.Freelancers
                 .Include(f => f.Skillsets)
                 .Include(f => f.Hobbies)
-                .Where(f => !f.IsArchive)
+                //.Where(f => !f.IsArchive)
                 .ToListAsync();
         }
 

@@ -1,10 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Freelancer Hub !</h1>
-    <a asp-controller="Home" asp-action="Proceed" class="btn btn-primary">
-        Click to Proceed
-    </a>
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to Freelancer Hub</h1>
+        <p class="lead">Manage your freelancers easily.</p>
+        <hr class="my-4">
+        <p>Click below to view the freelancer directory.</p>
+        <a class="btn btn-primary btn-lg" asp-controller="Freelancers" asp-action="Dashboard">View Freelancers</a>
+    </div>
 </div>
